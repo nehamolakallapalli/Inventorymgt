@@ -5,34 +5,49 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.dxctraining.inventorymgt.item.entities.Computer;
+import com.dxctraining.inventorymgt.item.entities.Item;
+import com.dxctraining.inventorymgt.item.entities.Phone;
+import com.dxctraining.inventorymgt.item.service.IItemService;
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
-import com.dxctraining.inventorymgt.supplier.exceptions.*;
-import com.dxctraining.inventorymgt.supplier.services.ISupplierService;
+import com.dxctraining.inventorymgt.supplier.exceptions.InvalidSupplierArgumentException;
+import com.dxctraining.inventorymgt.supplier.exceptions.SupplierNullException;
+import com.dxctraining.inventorymgt.supplier.service.ISupplierService;
 
 @Component
-public class InventoryUi 
-{
+public class InventoryUi {
+	
 	@Autowired
-        private ISupplierService supplierService;
-	    @PostConstruct
-	    public void runApp() 
-	    {
-	        try 
-		{
-	            Supplier supplier1 = new Supplier(1,"a1 suppliers");
-	            Supplier supplier2 = new Supplier(2,"a2 suppliers");
-	            supplierService.addSupplier(supplier1);
-	            supplierService.addSupplier(supplier2);
-	            int id1=supplier1.getId();
-	            Supplier su1=supplierService.findById(id1);
-	            System.out.println(su1.getId()+"  "+su1.getName());
-		
-		    Item item1 = new Item(1,"aaaa", supplier1);
-		    itemService.addItem(item1);
-		    Item item2 = new Item(2,"bbbb", supplier2);
-		    itemService.addItem(item2);
-		    Item item3 = new Item(3,"cccc", supplier3);
-		    itemService.addItem(item3);
+	private ISupplierService supplierService;
+	@Autowired
+	private IItemService itemService;
+	
+	@PostConstruct
+	public void runUi() {
+		try {
+			Supplier supplier1 = new Supplier("aaaa");
+			supplierService.addSupplier(supplier1);
+			Supplier supplier2 = new Supplier("bbbb");
+			supplierService.addSupplier(supplier2);
+			Supplier supplier3 = new Supplier("cccc");
+			supplierService.addSupplier(supplier3);
+			
+			Item item1 = new Item("phone", supplier1);
+			itemService.addItem(item1);
+			Item item2 = new Item("Computer", supplier2);
+			itemService.addItem(item2);
+			Item item3 = new Item("laptop", supplier3);
+			itemService.addItem(item3);
+			
+			Phone item4 = new Phone("Apple", supplier1, 256);
+			itemService.addItem(item4);
+			Phone item5 = new Phone("Oneplus", supplier2, 128);
+			itemService.addItem(item5);
+			
+			Computer item6 = new Computer("Hp",supplier1,1024);
+			itemService.addItem(item6);
+			Computer item7 = new Computer("Dell",supplier2, 2048);
+			itemService.addItem(item7);
 			
 			System.out.println("*****Deleting a supplier*****");
 			int id3 = supplier3.getId();
@@ -54,9 +69,12 @@ public class InventoryUi
 			Item itemfetched = itemService.findById(itemid1);
 			System.out.println("fetched item id is "+itemfetched.getId()+" fetched item name is "+itemfetched.getName());
 			
-	        } 
-		catch (InvalidArgumentException e) {
-	            e.printStackTrace();
-	        }
-	    }
+			
+		}catch (InvalidSupplierArgumentException e) {
+			e.printStackTrace();
+		}catch (SupplierNullException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
