@@ -5,6 +5,6 @@ public interface IItemDao
 		 Item addItem(Item item);
 		 void remove(int id);
 		 void itemDetails(Item item);
-		 Item findItemById(int id);
+		 Item findById(int id);
 		 
 }

@@ -22,7 +22,7 @@ public class ItemDaoImpl implements IItemDao
 	}
 
 	@Override
-	public Item findItemById(int id) {
+	public Item findById(int id) {
 		Item item = entityManager.find(Item.class, id);
 		if (item == null) {
 			throw new ItemNotFoundException("item not found for the given id" + id);
@@ -32,7 +32,7 @@ public class ItemDaoImpl implements IItemDao
 
 	@Override
 	public void remove(int id) {
-		Item item = findItemById(id);
+		Item item = findById(id);
 		entityManager.remove(item);
 	}
 }
