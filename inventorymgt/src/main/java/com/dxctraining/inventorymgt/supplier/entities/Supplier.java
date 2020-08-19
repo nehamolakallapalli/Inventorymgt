@@ -13,12 +13,12 @@ public class Supplier
 		private int id;
 		private String name;
 		
-		public Supplier(int id,String name) {
-			this.id=id;
+		public Supplier(String name) {
 			this.name = name;
 		}
-		public Supplier() {
-			//this("");
+		public Supplier() 
+		{
+			this("");
 		}
 
 		public int getId() {
