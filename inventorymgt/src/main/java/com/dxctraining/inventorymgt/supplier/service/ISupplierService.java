@@ -1,8 +1,8 @@
-package com.dxctraining.inventorymgt.supplier.dao;
+package com.dxctraining.inventorymgt.supplier.service;
 
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
 
-public interface ISupplierDao {
+public interface ISupplierService {
 	Supplier findById(int id);
 	Supplier addSupplier(Supplier supplier);
 	void removeSupplier(int id);

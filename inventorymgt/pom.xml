@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dxctraining</groupId>
-	<artifactId>inventoryapp</artifactId>
+	<artifactId>inventorymgt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>inventoryapp</name>
+	<name>inventorymgt</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

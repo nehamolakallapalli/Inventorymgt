@@ -6,6 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @SpringBootapplication equivalent to 3 things
+ * 1)@Configuration : so we dont have to provide on our own
+ * 2)@ComponentScan: so we dont have to provide on our own
+ * 3) @AutoConfiguration so we dont have to provide on our own
+ */
 @SpringBootApplication
 public class ProjectMain {
 
@@ -13,4 +19,5 @@ public class ProjectMain {
 		SpringApplication.run(ProjectMain.class, args);
 
 	}
+
 }
