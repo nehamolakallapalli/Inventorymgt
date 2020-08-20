@@ -4,7 +4,7 @@ import com.dxctraining.inventorymgt.supplier.entities.*;
 
 public interface ISupplierDao 
 {
-		Supplier addSupplier(Supplier supplier);
-		Supplier findById(int id);
-		void remove(int id);
+	Supplier findById(int id);
+	Supplier addSupplier(Supplier supplier);
+	void remove(int id);
 }

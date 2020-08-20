@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dxctraining.inventorymgt.supplier.dao.ISupplierDao;
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
-import com.dxctraining.inventorymgt.supplier.exceptions.InvalidArgumentException;
+import com.dxctraining.inventorymgt.supplier.exceptions.*;
 
 @Transactional
 @Service
@@ -16,29 +16,35 @@ public class SupplierServiceImpl implements ISupplierService
 		@Autowired
 		private ISupplierDao dao;
 		
-
-		@Override
-		public Supplier addSupplier(Supplier supplier) {
-			display(supplier);
-			supplier=dao.addSupplier(supplier);
-			return supplier;
-		}
-
-		public void display(Object arg) {
-			if(arg==null) {
-				throw new InvalidArgumentException("argument is null");
-			}
-			
-		}
-
 		@Override
 		public Supplier findById(int id) {
+			validateId(id);
 			Supplier supplier=dao.findById(id);
 			return supplier;
 		}
-
+		
+		private void validateId(int id) {
+			if(id == 0) {
+				throw new InvalidArgumentException("id should not be null");
+			}
+		}
+		
 		@Override
-		public void remove(int id) {
+		public Supplier addSupplier(Supplier supplier) {
+			validateSupplier(supplier);
+			dao.addSupplier(supplier);
+			return supplier;
+		}
+
+		public void validateSupplier(Supplier supplier) {
+			if(supplier==null) {
+				throw new InvalidArgumentException("supplier is null");
+			}
+		}
+		
+		@Override
+		public void removeSupplier(int id) {
+			validateId(id);
 			dao.remove(id);
 			
 		}

@@ -14,7 +14,16 @@ public class ItemDaoImpl implements IItemDao
 
 		@PersistenceContext
 		private EntityManager entityManager;
-
+		
+		@Override
+		public Item findById(int id) {
+			Item item = entityManager.find(Item.class, id);
+			if (item == null) {
+				throw new ItemNotFoundException("item not found for the given id" + id);
+			}
+			return item;
+		}
+		
 		@Override
 		public Item addItem(Item item) {
 			entityManager.persist(item);
@@ -22,17 +31,8 @@ public class ItemDaoImpl implements IItemDao
 		}
 
 		@Override
-		public Item findItemById(int id) {
-			Item item = entityManager.find(Item.class, id);
-			if (item == null) {
-				throw new ItemNotFoundException("item not found for the given id" + id);
-			}
-			return item;
-		}
-
-		@Override
-		public void remove(int id) {
-			Item item = findItemById(id);
+		public void removeItem(int id) {
+			Item item = findById(id);
 			entityManager.remove(item);
 		}
 }

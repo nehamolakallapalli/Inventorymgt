@@ -4,19 +4,22 @@ import com.dxctraining.inventorymgt.supplier.entities.Supplier;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "items")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Item 
 {
+		@Id
+		@GeneratedValue
 	    private int id;
 	    private String name;
 	    @ManyToOne
 	    private Supplier supplier;
 
-	    public Item(int id, String name, Supplier supplier) {
-	        this.id = id;
+	    public Item( String name, Supplier supplier) {
 	        this.name = name;
 	        this.supplier = supplier;
+	    }
+	    public Item() {
+	    	
 	    }
 
 	    public int getId() {
@@ -43,4 +46,17 @@ public class Item
 	    public void setSupplier(Supplier supplier) {
 	        this.supplier = supplier;
 	    }
+	    
+	    @Override
+		public boolean equals(Object o) {
+			if(this == o) {
+				return true;
+			}
+			if(o == null || !(o instanceof Item)) {
+				return false;
+			}
+			Item that = (Item)o;
+			boolean isequals = this.id == that.id;
+			return isequals;	
+		}
 }

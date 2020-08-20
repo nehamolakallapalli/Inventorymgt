@@ -12,13 +12,7 @@ public class SupplierDaoImpl implements ISupplierDao
 {
 		@PersistenceContext
 		private EntityManager entityManager;
-
-		@Override
-		public Supplier addSupplier(Supplier supplier) {
-			entityManager.persist(supplier);
-			return supplier;
-		}
-
+		
 		@Override
 		public Supplier findById(int id) {
 			Supplier supplier=entityManager.find(Supplier.class, id);
@@ -27,6 +21,13 @@ public class SupplierDaoImpl implements ISupplierDao
 			}
 			return supplier;
 		}
+		
+		@Override
+		public Supplier addSupplier(Supplier supplier) {
+			entityManager.persist(supplier);
+			return supplier;
+		}
+
 
 		@Override
 		public void remove(int id) {

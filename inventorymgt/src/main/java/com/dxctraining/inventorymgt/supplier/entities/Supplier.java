@@ -3,8 +3,9 @@ package com.dxctraining.inventorymgt.supplier.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Objects;
-
+import javax.persistence.OneToMany;
+import com.dxctraining.inventorymgt.item.entities.Item;
+import java.util.Set;
 @Entity
 public class Supplier 
 {
@@ -12,6 +13,9 @@ public class Supplier
 		@GeneratedValue
 		private int id;
 		private String name;
+		
+		@OneToMany(mappedBy = "supplier")
+		private Set<Item> item;
 		
 		public Supplier(String name) {
 			this.name = name;

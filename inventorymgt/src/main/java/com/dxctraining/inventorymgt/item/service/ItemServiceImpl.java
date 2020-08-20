@@ -16,30 +16,35 @@ public class ItemServiceImpl implements IItemService
 	@Autowired
 	private IItemDao dao;
 	
-
+	@Override
+	public Item findById(int id) {
+		validateId(id);
+		Item item=dao.findById(id);
+		return item;
+	}
+	
+	private void validateId(int id) {
+		if(id == 0) {
+			throw new InvalidArgumentException("id should not be null");
+		}	
+	}
+	
 	@Override
 	public Item addItem(Item item) {
-		display(item);
+		validateItem(item);
 		item=dao.addItem(item);
 		return item;
 	}
 
-	public void display(Object arg) {
-		if(arg==null) {
-			throw new InvalidArgumentException("argument is null");
+	public void validateItem(Object item) {
+		if(item==null) {
+			throw new InvalidArgumentException("item is null");
 		}
 		
 	}
-
-	@Override
-	public Item findItemById(int id) {
-		Item item=dao.findItemById(id);
-		return item;
-	}
-
+	
 	@Override
 	public void removeItem(int id) {
-		dao.remove(id);
-		
+		dao.removeItem(id);
 	}	
 }

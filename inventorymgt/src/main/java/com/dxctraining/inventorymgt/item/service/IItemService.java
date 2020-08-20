@@ -4,7 +4,7 @@ import com.dxctraining.inventorymgt.item.entities.*;
 
 public interface IItemService 
 {
+	Item findById(int id);
 	Item addItem(Item item);
-	Item findItemById(int id);
 	void removeItem(int id);
 }
