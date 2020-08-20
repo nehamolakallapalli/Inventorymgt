@@ -20,6 +20,14 @@ public class Supplier {
 	@OneToMany(mappedBy = "supplier")
 	private Set<Item> item;
 	
+	public Set<Item> getItems(){
+		return item;
+	}
+	
+	public void setItems(Set<Item> item) {
+		this.item = item;
+	}
+	
 	public Supplier(String name) {
 		this.name = name;
 	}

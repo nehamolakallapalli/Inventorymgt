@@ -8,6 +8,7 @@ import com.dxctraining.inventorymgt.supplier.dao.ISupplierDao;
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
 import com.dxctraining.inventorymgt.supplier.exceptions.InvalidSupplierArgumentException;
 import com.dxctraining.inventorymgt.supplier.exceptions.SupplierNullException;
+import java.util.List;
 
 @Transactional
 @Service
@@ -48,6 +49,10 @@ public class SupplierServiceImpl implements ISupplierService {
 	public void removeSupplier(int id) {
 		validateId(id);
 		dao.removeSupplier(id);
-		
 	}
+	  @Override
+	    public List<Supplier>allSuppliers(){
+	        List<Supplier>allsuppliers=dao.allSuppliers();
+	        return allsuppliers;
+	    }
 }
