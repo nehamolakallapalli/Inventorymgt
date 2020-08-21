@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dxctraining.inventorymgt.item.dao.IItemDao;
 import com.dxctraining.inventorymgt.item.entities.Item;
 import com.dxctraining.inventorymgt.item.exceptions.InvalidItemArgumentException;
-
+import com.dxctraining.inventorymgt.item.entities.Computer;
+import java.util.List;
 @Transactional
 @Service
-public class ItemServiceImpl implements IItemService {
-	
+public class ItemServiceImpl implements IItemService
+{	
 	@Autowired
 	private IItemDao dao;
 	
@@ -26,9 +27,7 @@ public class ItemServiceImpl implements IItemService {
 		if(id == 0) {
 			throw new InvalidItemArgumentException("id should not be null");
 		}
-		
 	}
-
 
 	@Override
 	public Item addItem(Item item) {
@@ -48,4 +47,9 @@ public class ItemServiceImpl implements IItemService {
 	public void removeItem(int id) {
 		dao.removeItem(id);	
 	}
+	 @Override
+	    public List<Computer> allComputer(){
+	        List<Computer>allcomputer=dao.allComputer();
+	        return allcomputer;
+	    }
 }

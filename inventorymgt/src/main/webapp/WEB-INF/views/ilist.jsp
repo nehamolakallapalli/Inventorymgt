@@ -6,17 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>All Suppliers</title>
+<title>All Items</title>
 </head>
 <body>
 
-	<h1>Listing all suppliers</h1>
 
-	<c:forEach items="${supplier}" var="supplier">
+	<h1>Listing all items</h1>
 
-		<c:out value="${supplier.id}" />
-		<br>
-		<c:out value="${supplier.name}" />
+	<c:forEach items="${items}" var="item">
+
+		<c:out value="${item.name}" />
+		
+		<c:out value="${item.id}" />
+
 		<br>
 		
 	</c:forEach>
