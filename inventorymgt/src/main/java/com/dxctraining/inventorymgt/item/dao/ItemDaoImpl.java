@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.dxctraining.inventorymgt.item.entities.Item;
 import com.dxctraining.inventorymgt.item.exceptions.ItemNullException;
 import com.dxctraining.inventorymgt.item.entities.Computer;
+import com.dxctraining.inventorymgt.item.entities.Phone;
 import java.util.List;
 
 @Repository
@@ -38,11 +39,17 @@ public class ItemDaoImpl implements IItemDao{
 		em.remove(item);
 	}
 	 @Override
-	    public List<Computer> allComputer() {
+	 public List<Computer> allComputer() {
 	        String jpaql="from Computer";
 	        TypedQuery<Computer>query=em.createQuery(jpaql,Computer.class);
 	        List<Computer>computerList=query.getResultList();
 	        return computerList;
-	    }
-
+	  }
+	 @Override
+	 public List<Phone> allPhone() {
+	        String jpaql="from Phone";
+	        TypedQuery<Phone>query=em.createQuery(jpaql,Phone.class);
+	        List<Phone>phoneList=query.getResultList();
+	        return phoneList;
+	  }
 }

@@ -8,6 +8,7 @@ import com.dxctraining.inventorymgt.item.dao.IItemDao;
 import com.dxctraining.inventorymgt.item.entities.Item;
 import com.dxctraining.inventorymgt.item.exceptions.InvalidItemArgumentException;
 import com.dxctraining.inventorymgt.item.entities.Computer;
+import com.dxctraining.inventorymgt.item.entities.Phone;
 import java.util.List;
 @Transactional
 @Service
@@ -48,8 +49,13 @@ public class ItemServiceImpl implements IItemService
 		dao.removeItem(id);	
 	}
 	 @Override
-	    public List<Computer> allComputer(){
+     public List<Computer> allComputer(){
 	        List<Computer>allcomputer=dao.allComputer();
 	        return allcomputer;
-	    }
+	 }
+	 @Override
+	 public List<Phone> allPhone(){
+	        List<Phone>allPhone=dao.allPhone();
+	        return allPhone;
+	 }
 }

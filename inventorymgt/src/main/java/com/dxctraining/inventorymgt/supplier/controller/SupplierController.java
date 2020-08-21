@@ -21,9 +21,11 @@ public class SupplierController
 		@PostConstruct
 		public void init() {
 			Supplier supplier1 = new Supplier("aaaa");
+			//int id1 = supplier1.getId();
 			supplier1 = service.addSupplier(supplier1);
 			
 			Supplier supplier2 = new Supplier("bbbb");
+			//int id2 = supplier2.getId();
 			supplier2 = service.addSupplier(supplier2);	
 		}
 		

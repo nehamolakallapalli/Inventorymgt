@@ -15,10 +15,9 @@
 
 <c:forEach items="${computer}"  var="computer">
 
-Id is :<c:out value="${computer.getId()}"  />
-
-name is :<c:out value="${computer.getName()}"  />
-Supplier is :<c:out value="${computer.getSupplier().getName()}"  />
+Id is :<c:out value="${computer.getId()}"  /><br>
+name is :<c:out value="${computer.getName()}"  /><br>
+Supplier is :<c:out value="${computer.getSupplier().getName()}"  /><br>
 DISCSIZE is :<c:out value="${computer.getDiscsize()}"  />
 
 <br>
