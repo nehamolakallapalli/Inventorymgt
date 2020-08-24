@@ -21,7 +21,7 @@ import com.dxctraining.inventorymgt.supplier.service.*;
 public class ComputerController 
 {
 		@Autowired
-		private IItemService service;
+		private IItemService service1;
 		
 		@Autowired
 		private ISupplierService service2;
@@ -30,15 +30,13 @@ public class ComputerController
 		public void init() {
 			Supplier supplier1=new Supplier("aaaa","1234");
 			service2.addSupplier(supplier1);
-			Supplier supplier2 = new Supplier("bbbb","5678");
-			service2.addSupplier(supplier2);
 			Computer computer1=new Computer("Dell",supplier1,200);
-			service.addItem(computer1);
+			service1.addItem(computer1);
 		}
 		
 		@GetMapping("/listallcmp")
 	    public ModelAndView allComputers(){
-	    	 List<Computer>computer=service.allComputer();
+	    	 List<Computer>computer=service1.allComputer();
 	        ModelAndView modelAndView=new ModelAndView("clist","computers",computer);
 	        return modelAndView;
 	    }
@@ -52,7 +50,7 @@ public class ComputerController
 		public ModelAndView processAddComputer(@RequestParam("name")String name, @RequestParam("discsize")int discsize) {
 			Computer computer = new Computer(name, discsize);
 			Item item = (Item)computer;
-			item = service.addItem(item);
+			item = service1.addItem(item);
 			ModelAndView modelAndView = new ModelAndView("processaddcomputer","computers",item);
 			return modelAndView;
 		}
