@@ -13,7 +13,7 @@
 <h1>Listing all Computer</h1>
 
 
-<c:forEach items="${computer}"  var="computer">
+<c:forEach items="${computers}"  var="computer">
 
 Id is :<c:out value="${computer.getId()}"  /><br>
 name is :<c:out value="${computer.getName()}"  /><br>

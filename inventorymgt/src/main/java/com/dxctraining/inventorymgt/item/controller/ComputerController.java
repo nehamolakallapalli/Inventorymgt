@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dxctraining.inventorymgt.item.entities.Computer;
 import com.dxctraining.inventorymgt.item.entities.Item;
 import com.dxctraining.inventorymgt.item.service.IItemService;
+import com.dxctraining.inventorymgt.item.dto.*;
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
 import com.dxctraining.inventorymgt.supplier.service.*;
 
@@ -29,6 +30,8 @@ public class ComputerController
 		public void init() {
 			Supplier supplier1=new Supplier("aaaa","1234");
 			service2.addSupplier(supplier1);
+			Supplier supplier2 = new Supplier("bbbb","5678");
+			service2.addSupplier(supplier2);
 			Computer computer1=new Computer("Dell",supplier1,200);
 			service.addItem(computer1);
 		}
@@ -36,7 +39,28 @@ public class ComputerController
 		@GetMapping("/listallcmp")
 	    public ModelAndView allComputers(){
 	    	 List<Computer>computer=service.allComputer();
-	        ModelAndView modelAndView=new ModelAndView("clist","computer",computer);
+	        ModelAndView modelAndView=new ModelAndView("clist","computers",computer);
 	        return modelAndView;
 	    }
+		@GetMapping("/addcomputer")
+		public ModelAndView addComputer() {
+			ModelAndView modelAndView = new ModelAndView("addcomputer");
+			return modelAndView;
+		}
+		
+		@GetMapping("/processaddcomputer")
+		public ModelAndView processAddComputer(@RequestParam("name")String name, @RequestParam("discsize")int discsize) {
+			Computer computer = new Computer(name, discsize);
+			Item item = (Item)computer;
+			item = service.addItem(item);
+			ModelAndView modelAndView = new ModelAndView("processaddcomputer","computers",item);
+			return modelAndView;
+		}
+		
+		@GetMapping("/postaddcomputer")
+		public ModelAndView postAddComputer() {
+			CreateComputerRequest computer = new CreateComputerRequest();
+			ModelAndView modelAndView = new ModelAndView("postaddcomputer","computers",computer);
+			return modelAndView;
+		}
 }

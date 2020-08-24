@@ -53,13 +53,9 @@ public class SupplierController
 	        ModelAndView modelAndView=new ModelAndView("list","supplier",listAll);
 	        return modelAndView;
 	    }
-	    @GetMapping("/addsupplier")
-	    public ModelAndView supplierPage(){
-	        ModelAndView modelView=new ModelAndView("addsupplier");
-	        return modelView;
-	    }
+	   
 	    @GetMapping("/register")
-		public ModelAndView registerSupplier() {
+		public ModelAndView supplierregister() {
 			ModelAndView mv = new ModelAndView("supplierregister");
 			return mv;
 		}
