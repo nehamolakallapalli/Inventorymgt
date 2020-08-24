@@ -22,7 +22,7 @@ public class Computer extends Item {
 		this.discsize = discsize;
 	}
 	public Computer(String name, int discsize) {
-		
+		super(name);
 		this.discsize = discsize;
 	}
 	public int getId() {

@@ -6,18 +6,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Computer Details</title>
+<title>Details</title>
 </head>
 <body>
 
-<h1>Computer Details </h1>
+<h1>Phone Details </h1>
 
-id is <c:out value="${computer.id}"  />
+id is <c:out value="${phone.id}"  />
 <br>
-name is <c:out value="${computer.name}"  />
+name is <c:out value="${phone.name}"  />
 <br>
-disk size is <c:out value="${computer.diskSize}"  />
-<br>
+storage size is <c:out value="${phone.storagesize}"  />
 
+<br>
 </body>
 </html>
