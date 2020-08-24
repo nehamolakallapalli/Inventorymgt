@@ -16,6 +16,7 @@ public class Supplier {
 	@GeneratedValue
 	private int id;
 	private String name;
+	private String password;
 	
 	@OneToMany(mappedBy = "supplier")
 	private Set<Item> item;
@@ -28,11 +29,12 @@ public class Supplier {
 		this.item = item;
 	}
 	
-	public Supplier(String name) {
+	public Supplier(String name,String password) {
 		this.name = name;
+		this.password=password;
 	}
 	public Supplier() {
-		this("");
+		this("","");
 	}
 
 	public int getId() {

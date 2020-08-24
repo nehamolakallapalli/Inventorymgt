@@ -27,7 +27,7 @@ public class PhoneController
 		
 		@PostConstruct
 		public void init() {
-			Supplier supplier1=new Supplier("cccc");
+			Supplier supplier1=new Supplier("cccc","46778");
 			Phone phone1=new Phone("Vivo",supplier1,1000);
 			service2.addSupplier(supplier1);
 			service.addItem(phone1);

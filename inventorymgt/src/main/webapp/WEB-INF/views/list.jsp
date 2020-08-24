@@ -12,7 +12,7 @@
 
 	<h1>Listing all suppliers</h1>
 
-	<c:forEach items="${supplier}" var="supplier">
+	<c:forEach items="${suppliers}" var="supplier">
 
 		<c:out value="${supplier.id}" />
 		<br>

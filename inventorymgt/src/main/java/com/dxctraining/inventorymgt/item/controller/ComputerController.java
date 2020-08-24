@@ -27,7 +27,7 @@ public class ComputerController
 		
 		@PostConstruct
 		public void init() {
-			Supplier supplier1=new Supplier("aaaa");
+			Supplier supplier1=new Supplier("aaaa","1234");
 			service2.addSupplier(supplier1);
 			Computer computer1=new Computer("Dell",supplier1,200);
 			service.addItem(computer1);

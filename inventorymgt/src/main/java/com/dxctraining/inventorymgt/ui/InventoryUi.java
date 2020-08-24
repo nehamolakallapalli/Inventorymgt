@@ -29,11 +29,11 @@ public class InventoryUi {
 	public void runUi() {
 		try {
 			List<Item> list = new ArrayList<>();
-			Supplier supplier1 = new Supplier("aaaa");
+			Supplier supplier1 = new Supplier("aaaa","1234");
 			supplierService.addSupplier(supplier1);
-			Supplier supplier2 = new Supplier("bbbb");
+			Supplier supplier2 = new Supplier("bbbb","5667");
 			supplierService.addSupplier(supplier2);
-			Supplier supplier3 = new Supplier("cccc");
+			Supplier supplier3 = new Supplier("cccc","8990");
 			supplierService.addSupplier(supplier3);
 			
 			Item item1 = new Item("phone", supplier1);
@@ -46,7 +46,7 @@ public class InventoryUi {
 			list.add(item3);
 			itemService.addItem(item3);
 			
-			Phone item4 = new Phone("Apple", supplier1, 256);
+			Phone item4 = new Phone("Real Me", supplier1, 256);
 			list.add(item4);
 			itemService.addItem(item4);
 			Phone item5 = new Phone("Vivo", supplier2, 128);
@@ -73,8 +73,13 @@ public class InventoryUi {
 			System.out.println("******Fetching item by id******");
 			int itemid1 = item1.getId();
 			Item itemfetched = itemService.findById(itemid1);
-			System.out.println("fetched item id is "+itemfetched.getId()+" fetched item name is "+itemfetched.getName());
+			Supplier itemSupplier= itemfetched.getSupplier();
+			System.out.println("fetched item id is "+itemid1+" fetched item name is "+itemfetched.getName()+"item supplier is"+itemSupplier.getName());
 			
+			System.out.println("*****Displaying all items*****");
+			for(Item item:list) {
+				displayAllItems(item);
+			}
 			
 		}catch (InvalidSupplierArgumentException e) {
 			e.printStackTrace();
@@ -82,5 +87,26 @@ public class InventoryUi {
 			e.printStackTrace();
 		}
 		
+	}
+	public void displayAllItems(Item item) {
+		if(item instanceof Phone) {
+			phone(item);
+		}
+		if(item instanceof Computer) {
+			computer(item);
+		}
+		
+		System.out.println("item id :"+item.getId()+" item name :"+item.getName()+" item supplier :"+item.getSupplier().getName());
+	}
+
+	private void computer(Item item) {
+		Computer c = (Computer)item;
+		System.out.println(" model name :"+c.getName()+" disc size :"+c.getDiscsize());
+		
+	}
+
+	private void phone(Item item) {
+		Phone ph = (Phone)item;
+		System.out.println(" model name :"+ph.getName()+" storage :"+ph.getStoragesize());
 	}
 }

@@ -8,5 +8,5 @@ public interface ISupplierService {
 	Supplier findById(int id);
 	Supplier addSupplier(Supplier supplier);
 	void removeSupplier(int id);
-	List<Supplier>allSuppliers();
+	List<Supplier>listAll();
 }

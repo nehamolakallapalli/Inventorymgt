@@ -37,7 +37,7 @@ public class SupplierDaoImpl implements ISupplierDao {
 		em.remove(supplier);
 	}
 	@Override
-	 public List<Supplier> allSuppliers() 
+	 public List<Supplier> listAll() 
 	 {
 	        String jpaql="from Supplier";
 	        TypedQuery<Supplier>query=em.createQuery(jpaql,Supplier.class);

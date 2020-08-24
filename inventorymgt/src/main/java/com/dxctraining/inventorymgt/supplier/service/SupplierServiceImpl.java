@@ -51,8 +51,8 @@ public class SupplierServiceImpl implements ISupplierService {
 		dao.removeSupplier(id);
 	}
 	  @Override
-	    public List<Supplier>allSuppliers(){
-	        List<Supplier>allsuppliers=dao.allSuppliers();
+	    public List<Supplier>listAll(){
+	        List<Supplier>allsuppliers=dao.listAll();
 	        return allsuppliers;
 	    }
 }
