@@ -35,14 +35,20 @@ public class SupplierController
 		}
 		
 		@GetMapping("/profile")
-	    public ModelAndView employeeDetails(@RequestParam("id")int id){
-	       Supplier supplier=service.findById(id);
+	    public ModelAndView suplierDetails(@RequestParam("id")int id){
+			if(!sessionData.isUserLoggedin()) {
+				return new ModelAndView("login");
+			}
+		   Supplier supplier=service.findById(id);
 	       ModelAndView modelAndView=new ModelAndView("supplierDetails","supplier",supplier);
 	       return modelAndView;
 	    }
 
 	    @GetMapping("/listall")
-	    public ModelAndView allSuppliers(){
+	    public ModelAndView SupplierDetails(){
+	    	if(!sessionData.isUserLoggedin()) {
+				return new ModelAndView("login");
+			}
 	    	 List<Supplier>listAll=service.listAll();
 	        ModelAndView modelAndView=new ModelAndView("list","supplier",listAll);
 	        return modelAndView;
@@ -54,7 +60,7 @@ public class SupplierController
 	    }
 	    @GetMapping("/register")
 		public ModelAndView registerSupplier() {
-			ModelAndView mv = new ModelAndView("register");
+			ModelAndView mv = new ModelAndView("supplierregister");
 			return mv;
 		}
 
@@ -63,7 +69,7 @@ public class SupplierController
 			System.out.println("inside processregister method, name=" + name);
 			Supplier supplier = new Supplier(name,password);
 			supplier = service.addSupplier(supplier);
-			ModelAndView mv = new ModelAndView("details", "supplier", supplier);
+			ModelAndView mv = new ModelAndView("supplierDetails", "supplier", supplier);
 			return mv;
 		}
 		@GetMapping("/postregister")
@@ -84,7 +90,7 @@ public class SupplierController
 			if(correct) {
 				sessionData.saveLogin(id);
 				Supplier supplier = service.findById(id);
-				ModelAndView modelAndView = new ModelAndView("details","supplier",supplier);
+				ModelAndView modelAndView = new ModelAndView("SupplierDetails","supplier",supplier);
 				return modelAndView;
 			}
 				ModelAndView modelAndView = new ModelAndView("login");
