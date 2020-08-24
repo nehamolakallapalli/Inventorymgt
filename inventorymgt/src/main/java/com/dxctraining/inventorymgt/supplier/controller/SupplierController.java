@@ -12,12 +12,16 @@ import javax.annotation.PostConstruct;
 import com.dxctraining.inventorymgt.supplier.dto.CreateSupplierRequest;
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
 import com.dxctraining.inventorymgt.supplier.service.ISupplierService;
+import com.dxctraining.inventorymgt.supplier.dto.SessionData;
 
 @Controller
 public class SupplierController 
 {
 		@Autowired
 		private ISupplierService service;
+		
+		@Autowired
+		private SessionData sessionData;
 		
 		@PostConstruct
 		public void init() {
@@ -68,4 +72,29 @@ public class SupplierController
 	        ModelAndView modelView=new ModelAndView("postregister","supplier",newSupplier);
 	        return modelView;
 	    }
+		@GetMapping("/login")
+		public ModelAndView login() {
+			ModelAndView modelAndView = new ModelAndView("login");
+			return modelAndView;
+		}
+		
+		@GetMapping("/processlogin")
+		public ModelAndView processLogin(@RequestParam("id")int id,@RequestParam("password")String password) {
+			boolean correct = service.authentication(id,password);
+			if(correct) {
+				sessionData.saveLogin(id);
+				Supplier supplier = service.findById(id);
+				ModelAndView modelAndView = new ModelAndView("details","supplier",supplier);
+				return modelAndView;
+			}
+				ModelAndView modelAndView = new ModelAndView("login");
+				return modelAndView;
+		}
+		
+		@GetMapping("/logout")
+		public ModelAndView logout() {
+			sessionData.clear();
+			ModelAndView modelAndView = new ModelAndView("login");
+			return modelAndView;
+		}
 }
